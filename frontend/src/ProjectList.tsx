@@ -1,32 +1,36 @@
 import {useState, useEffect} from 'react';
 import type {Project} from './types/Project'
 
-function ProjectList(){
+function ProjectList({selectedCategories}:{selectedCategories: string[]}){
 
     const [projects, setProjects] = useState<Project[]>([]);
     const [pageSize, setPageSize] = useState<number>(10)
     const [pageNum, setPageNum] = useState<number>(1);
-    const [toatlItems, setTotalItems] = useState<number>(0);
     const [totalPages, setTotalPages] = useState<number>(0);
+
+    useEffect(() => {
+        setPageNum(1);
+    }, [selectedCategories]);
 
     useEffect(()=>{
         const fetchProjects = async () =>{
-            const response = await fetch(`https://localhost:5000/api/Water/AllProjects?pageSize=${pageSize}&pageNum=${pageNum}`);
+
+const categoryParams = selectedCategories.map((cat)=>`projectTypes=${encodeURIComponent(cat)}`).join('&');
+
+            const response = await fetch(`https://localhost:5000/api/Water/AllProjects?pageSize=${pageSize}&pageNum=${pageNum}${selectedCategories.length ? `&${categoryParams}`: ''}`);
             const data = await response.json();
             setProjects(data.projects);
-            setTotalItems(data.totalNumProjects);
-            setTotalPages(Math.ceil(toatlItems / pageSize));
+            setTotalPages(Math.ceil(data.totalNumProjects / pageSize));
         }
 
         fetchProjects();
-    }, [pageSize, pageNum, toatlItems]);
+    }, [pageSize, pageNum, selectedCategories]);
 
     return (
         <>
-            <h1>Water Project</h1>
             <br />
             {projects.map((p)=>
-            <div id="projectCard" className="card">
+            <div key={p.projectId} id="projectCard" className="card">
                 <h3 className='card-title'>{p.projectName}</h3>
                 <div className='card-body'>
                     <ul className='list-unstyled'>
