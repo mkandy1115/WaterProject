@@ -64,3 +64,4 @@ C:\Users\kyoan\Documents\響\School\2026 Winter\IS 413 Ent. App\WaterProject\bac
 C:\Users\kyoan\Documents\響\School\2026 Winter\IS 413 Ent. App\WaterProject\backend\WaterProject.API\obj\Debug\net10.0\WaterProject.API.genruntimeconfig.cache
 C:\Users\kyoan\Documents\響\School\2026 Winter\IS 413 Ent. App\WaterProject\backend\WaterProject.API\obj\Debug\net10.0\ref\WaterProject.API.dll
 C:\Users\kyoan\Documents\響\School\2026 Winter\IS 413 Ent. App\WaterProject\backend\WaterProject.API\obj\Debug\net10.0\WaterProject.API.sourcelink.json
+C:\Users\kyoan\Documents\響\School\2026 Winter\IS 413 Ent. App\WaterProject\backend\WaterProject.API\bin\Debug\net10.0\package-lock.json
